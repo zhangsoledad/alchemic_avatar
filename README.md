@@ -25,17 +25,19 @@ Mac OS X
 $ brew install imagemagick ghostscript
 ```
 
-1. Add alchemic_avatar to your list of dependencies in `mix.exs`:
+Add alchemic_avatar to your list of dependencies in `mix.exs`:
+```
+def deps do
+  [{:alchemic_avatar, "~> 0.1.0"}]
+end
+```
 
-      def deps do
-        [{:alchemic_avatar, "~> 0.1.0"}]
-      end
-
-2. Ensure alchemic_avatar is started before your application:
-
-      def application do
-        [applications: [:alchemic_avatar]]
-      end
+Ensure alchemic_avatar is started before your application:
+```
+def application do
+  [applications: [:alchemic_avatar]]
+end
+```
 
 ## Configuration
 
