@@ -14,19 +14,31 @@ defmodule AlchemicAvatar.Config do
 
   @config Application.get_all_env(:alchemic_avatar)
 
+  @doc """
+  cache_base_path
+  """
   def cache_base_path do
     Keyword.get(@config, :cache_base_path)
   end
 
+
+  @doc """
+  colors_palette
+  """
   def colors_palette do
     Keyword.get(@config, :colors_palette, :google)
   end
 
+  @doc """
+  weight
+  """
   def weight do
     Keyword.get(@config, :weight, 300)
   end
 
-
+  @doc """
+  annotate_position
+  """
   def annotate_position do
     Keyword.get(@config, :annotate_position, "-0+5")
   end

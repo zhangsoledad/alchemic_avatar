@@ -1,4 +1,7 @@
 defmodule AlchemicAvatar do
+  @moduledoc """
+  `AlchemicAvatar.generate` - generate avatar
+  """
 
   @fullsize 240
   @fill_color "rgba(255, 255, 255, 0.65)"
