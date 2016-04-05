@@ -1,6 +1,6 @@
 # AlchemicAvatar
 
-[![Build Status](https://travis-ci.org/zhangsoledad/alchemic_avatar.svg?branch=master)](https://travis-ci.org/zhangsoledad/alchemic_avatar.svg?branch=master)
+[![Build Status](https://travis-ci.org/zhangsoledad/alchemic_avatar.svg?branch=master)](https://travis-ci.org/zhangsoledad/alchemic_avatar?branch=master)
 [![Inline docs](http://inch-ci.org/github/zhangsoledad/alchemic_avatar.svg?branch=master)](http://inch-ci.org/github/zhangsoledad/alchemic_avatar)
 
 Creating letter avatar from user's name(or any other strong / character).
