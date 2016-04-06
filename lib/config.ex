@@ -6,7 +6,7 @@ defmodule AlchemicAvatar.Config do
 
   | name               | type    | default  |
   | :----------------- | :------ | -------: |
-  | cache_base_path    | binary  | N/A      |
+  | cache_base_path    | binary  | "priv/static" |
   | colors_palette     | atom    | :google or :iwanthue |
   | weight             | int     | 300   |
   | annotate_position  | binary  | "-0+5" |
@@ -18,7 +18,7 @@ defmodule AlchemicAvatar.Config do
   cache_base_path
   """
   def cache_base_path do
-    Keyword.get(@config, :cache_base_path)
+    Keyword.get(@config, :cache_base_path, "priv/static")
   end
 
 

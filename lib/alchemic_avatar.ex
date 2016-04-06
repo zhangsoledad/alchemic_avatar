@@ -52,7 +52,7 @@ defmodule AlchemicAvatar do
   end
 
   defp cache_path do
-    "#{AlchemicAvatar.Config.cache_base_path || "priv/static" }/alchemic_avatar"
+    "#{AlchemicAvatar.Config.cache_base_path}/alchemic_avatar"
   end
 
   defp dir_path(identity) do
