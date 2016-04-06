@@ -17,8 +17,6 @@ defmodule AlchemicAvatar do
     cache = Keyword.get(opts, :cache, true)
     identity = identity(username)
     a_size = [size, @fullsize] |> Enum.min
-
-
     do_generate(identity, a_size, cache)
   end
 
@@ -54,9 +52,8 @@ defmodule AlchemicAvatar do
   end
 
   defp cache_path do
-    "#{AlchemicAvatar.Config.cache_base_path || "public/system" }/alchemic_avatar"
+    "#{AlchemicAvatar.Config.cache_base_path || "priv/static" }/alchemic_avatar"
   end
-
 
   defp dir_path(identity) do
     "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
