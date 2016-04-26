@@ -6,10 +6,11 @@ defmodule AlchemicAvatar.Config do
 
   | name               | type    | default  |
   | :----------------- | :------ | -------: |
-  | cache_base_path    | binary  | "priv/static" |
+  | cache_base_path    | binary  | "static" |
   | colors_palette     | atom    | :google or :iwanthue |
   | weight             | int     | 300   |
   | annotate_position  | binary  | "-0+5" |
+  | app_name  | atom  | N/A |
   """
 
   @config Application.get_all_env(:alchemic_avatar)
@@ -18,7 +19,20 @@ defmodule AlchemicAvatar.Config do
   cache_base_path
   """
   def cache_base_path do
-    Keyword.get(@config, :cache_base_path, "priv/static")
+    Keyword.get(@config, :cache_base_path, "static")
+  end
+
+  @doc """
+  app_name
+  """
+  def app_name do
+    case Keyword.fetch(@config, :app_name) do
+      {:ok, name} -> name
+      _ ->
+        raise ArgumentError, message: """
+          you need set app_name in your config
+        """
+    end
   end
 
 

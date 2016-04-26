@@ -57,7 +57,7 @@ defmodule AlchemicAvatar do
 
   defp dir_path(identity) do
     path = "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
-    __DIR__ |> Path.join("../#{path}")
+    :code.priv_dir(AlchemicAvatar.Config.app_name) |> Path.join(path)
   end
 
   defp filename(identity, size) do
