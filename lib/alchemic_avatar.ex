@@ -56,7 +56,8 @@ defmodule AlchemicAvatar do
   end
 
   defp dir_path(identity) do
-    "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
+    path = "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
+    __DIR__ |> Path.join("../#{path}")
   end
 
   defp filename(identity, size) do
@@ -64,7 +65,7 @@ defmodule AlchemicAvatar do
   end
 
   defp mk_path(path) do
-    if !File.exists?(path) do
+    unless File.exists?(path) do
       File.mkdir_p path
     end
     :ok
