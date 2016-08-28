@@ -60,7 +60,7 @@ The `google` selected will generate the same avatar for both, "Krzysiek" and "ks
 ## Usage
 
 ```
-AlchemicAvatar.generate 'ksz2k', 200
+AlchemicAvatar.generate "ksz2k", 200
 => "public/system/alchemic_avatar/k/155_206_95/200.png"
 ```
 
