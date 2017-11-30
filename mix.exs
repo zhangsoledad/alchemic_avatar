@@ -5,11 +5,11 @@ defmodule AlchemicAvatar.Mixfile do
     [app: :alchemic_avatar,
      version: "0.1.2",
      elixir: "~> 1.2",
-     description: description,
+     description: description(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     package: package,
-     deps: deps,
+     package: package(),
+     deps: deps(),
      docs: [extras: ["README.md"] ]
     ]
   end

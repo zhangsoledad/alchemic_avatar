@@ -56,7 +56,7 @@ defmodule AlchemicAvatar do
   end
 
   defp dir_path(identity) do
-    path = "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
+    path = "#{cache_path()}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
     :code.priv_dir(AlchemicAvatar.Config.app_name) |> Path.join(path)
   end
 
@@ -95,7 +95,7 @@ defmodule AlchemicAvatar do
       "-gravity", "center",
       "-thumbnail", "#{width}x#{height}^",
       "-extent", "#{width}x#{height}",
-      "-interpolate", "bicubic",
+      "-interpolate", "catrom",
       "-unsharp", "2x0.5+0.7+0",
       "-quality", "98",
       "#{to}"
