@@ -3,7 +3,7 @@ defmodule AlchemicAvatar.Mixfile do
 
   def project do
     [app: :alchemic_avatar,
-     version: "0.1.2",
+     version: "0.1.3",
      elixir: "~> 1.2",
      description: description(),
      build_embedded: Mix.env == :prod,
@@ -22,7 +22,7 @@ defmodule AlchemicAvatar.Mixfile do
 
   defp deps do
     [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev},
+    {:ex_doc, "~> 0.18", only: :dev},
     {:inch_ex, "~> 0.5", only: :docs}]
   end
 
