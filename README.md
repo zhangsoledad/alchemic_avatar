@@ -71,3 +71,14 @@ AlchemicAvatar.generate "ksz2k", 200
 iex> Pinyin.from_string("龡龢龣龤龥癩")
 "chui he jue xie yu la"
 ```
+
+
+# Creating letter avatar from user's name
+config :alchemic_avatar,
+  global_path?: true,
+  cache_base_path: System.user_home() <> "/media/users",
+  colors_palette: :iwanthue,
+  weight: 500,
+  annotate_position: "-0+10",
+  app_name: :project_name
+  

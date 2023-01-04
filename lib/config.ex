@@ -10,6 +10,7 @@ defmodule AlchemicAvatar.Config do
   | colors_palette     | atom    | :google or :iwanthue |
   | weight             | int     | 300   |
   | annotate_position  | binary  | "-0+5" |
+  | global_path?       | boolean | false |
   | app_name  | atom  | N/A |
   """
 
@@ -27,14 +28,16 @@ defmodule AlchemicAvatar.Config do
   """
   def app_name do
     case Keyword.fetch(@config, :app_name) do
-      {:ok, name} -> name
+      {:ok, name} ->
+        name
+
       _ ->
-        raise ArgumentError, message: """
-          you need set app_name in your config
-        """
+        raise ArgumentError,
+          message: """
+            you need set app_name in your config
+          """
     end
   end
-
 
   @doc """
   colors_palette
@@ -55,5 +58,12 @@ defmodule AlchemicAvatar.Config do
   """
   def annotate_position do
     Keyword.get(@config, :annotate_position, "-0+5")
+  end
+
+  @doc """
+  global_path?
+  """
+  def global_path? do
+    Keyword.get(@config, :global_path?, false)
   end
 end
