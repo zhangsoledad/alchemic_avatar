@@ -16,7 +16,7 @@ defmodule AlchemicAvatar do
   def generate(username, size, opts \\ []) do
     cache = Keyword.get(opts, :cache, true)
     identity = identity(username)
-    a_size = [size, @fullsize] |> Enum.min
+    a_size = [size, @fullsize] |> Enum.min()
     do_generate(identity, a_size, cache)
   end
 
@@ -52,12 +52,17 @@ defmodule AlchemicAvatar do
   end
 
   defp cache_path do
-    "#{AlchemicAvatar.Config.cache_base_path}/alchemic_avatar"
+    "#{AlchemicAvatar.Config.cache_base_path()}/alchemic_avatar"
   end
 
   defp dir_path(identity) do
     path = "#{cache_path()}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
-    :code.priv_dir(AlchemicAvatar.Config.app_name) |> Path.join(path)
+
+    if AlchemicAvatar.Config.global_path?() do
+      path
+    else
+      :code.priv_dir(AlchemicAvatar.Config.app_name()) |> Path.join(path)
+    end
   end
 
   defp filename(identity, size) do
@@ -66,40 +71,58 @@ defmodule AlchemicAvatar do
 
   defp mk_path(path) do
     unless File.exists?(path) do
-      File.mkdir_p path
+      File.mkdir_p(path)
     end
+
     :ok
   end
 
   defp convert_file(identity, size) do
-    mk_path dir_path(identity)
+    mk_path(dir_path(identity))
     filename = filename(identity, size)
-    System.cmd "convert", [
-      "-size", "#{size}x#{size}",
+
+    System.cmd("convert", [
+      "-size",
+      "#{size}x#{size}",
       "xc:#{to_rgb(identity.color)}",
-      "-pointsize", "140",
-      "-font", "#{@font_filename}",
-      "-weight", "#{AlchemicAvatar.Config.weight}",
-      "-fill", "#{@fill_color}",
-      "-gravity", "Center",
-      "-annotate", "#{AlchemicAvatar.Config.annotate_position}", "#{identity.letter}",
+      "-pointsize",
+      "140",
+      "-font",
+      "#{@font_filename}",
+      "-weight",
+      "#{AlchemicAvatar.Config.weight()}",
+      "-fill",
+      "#{@fill_color}",
+      "-gravity",
+      "Center",
+      "-annotate",
+      "#{AlchemicAvatar.Config.annotate_position()}",
+      "#{identity.letter}",
       "#{filename}"
-    ]
+    ])
+
     filename
   end
 
   defp resize(from, to, width, height) do
-    System.cmd "convert", [
+    System.cmd("convert", [
       "#{from}",
-      "-background", "transparent",
-      "-gravity", "center",
-      "-thumbnail", "#{width}x#{height}^",
-      "-extent", "#{width}x#{height}",
-      "-interpolate", "catrom",
-      "-unsharp", "2x0.5+0.7+0",
-      "-quality", "98",
+      "-background",
+      "transparent",
+      "-gravity",
+      "center",
+      "-thumbnail",
+      "#{width}x#{height}^",
+      "-extent",
+      "#{width}x#{height}",
+      "-interpolate",
+      "catrom",
+      "-unsharp",
+      "2x0.5+0.7+0",
+      "-quality",
+      "98",
       "#{to}"
-    ]
+    ])
   end
 
   defp convert_fullsize(identity) do
@@ -107,7 +130,7 @@ defmodule AlchemicAvatar do
   end
 
   defp to_rgb(color) do
-    [r, g, b ] = color
+    [r, g, b] = color
     "rgb(#{r},#{g},#{b})"
   end
 end
